@@ -962,13 +962,13 @@ class MetaDataMDX(InMemoryMetaData):
             mdx_url, headers={"Accept": SAML_METADATA_CONTENT_TYPE}, timeout=self.http_client_timeout
         )
         if response.status_code != 200:
-            error_msg = f"Fething {item}: Got response status {response.status_code}"
+            error_msg = f"Fetching {item}: Got response status {response.status_code}"
             logger.warning(error_msg)
             raise KeyError(error_msg)
 
         _txt = response.content
         if not self.parse_and_check_signature(_txt):
-            error_msg = f"Fething {item}: invalid signature"
+            error_msg = f"Fetching {item}: invalid signature"
             logger.error(error_msg)
             raise KeyError(error_msg)
 
